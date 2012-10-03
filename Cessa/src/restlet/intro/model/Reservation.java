@@ -9,7 +9,7 @@ public class Reservation {
 
 	public Reservation() {
 		super();
-		this.vols = Factory.newCollection();
+		this.vols = Factory.createCollection();
 	}
 
 	public Collection<Vol> getVols() {

@@ -10,8 +10,7 @@ public class ReservationServerApplication extends Application {
 	public Restlet createInboundRoot() {
 		Router router = new Router(getContext());
 
-		router.attach("/aeroports", AeroportServerResource.class);
-		//router.attach("/aeroports/{aeroportName}", AeroportServerResource.class);
+		router.attach("/aeroports", AeroportsServerResource.class);
 
 		return router;
 	}

@@ -6,7 +6,10 @@ import org.restlet.resource.ServerResource;
 
 
 public class ReservationServerResource extends ServerResource {
-	public static void main(String[] args) throws Exception {  
+	public static void main(String[] args) throws Exception {
+		//TODO create client to make this obsolete
+		AeroportsServerResource.init();
+		
 		// Create a new Component.  
 		Component component = new Component();  
 
@@ -14,7 +17,7 @@ public class ReservationServerResource extends ServerResource {
 		component.getServers().add(Protocol.HTTP, 8182);  
 
 		// Attach the sample application.  
-		component.getDefaultHost().attach("", ReservationServerApplication.class);  
+		component.getDefaultHost().attach("", new ReservationServerApplication());  
 
 		// Start the component.  
 		component.start();  
