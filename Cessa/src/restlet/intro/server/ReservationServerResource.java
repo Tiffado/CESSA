@@ -14,8 +14,7 @@ public class ReservationServerResource extends ServerResource {
 		component.getServers().add(Protocol.HTTP, 8182);  
 
 		// Attach the sample application.  
-		component.getDefaultHost().attach("",  
-				new ReservationServerApplication());  
+		component.getDefaultHost().attach("", ReservationServerApplication.class);  
 
 		// Start the component.  
 		component.start();  
