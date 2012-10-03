@@ -1,5 +1,6 @@
-package restlet.intro;
+package restlet.intro.resources;
 
+import org.restlet.Restlet;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
@@ -15,5 +16,7 @@ public interface AeroportResource {
 	
 	@Delete
 	public void remove();
+
+	Restlet createInboundRoot();
 
 }
