@@ -22,13 +22,14 @@ public class AeroportsServerResource extends ServerResource implements ItemsReso
 	}
 	
 	@Override
-	@Get
-	public String list() {
+	@Get("xml")
+	public Aeroport list() {
 		StringBuffer buf = new StringBuffer();
 		for (Aeroport a: all) {
 			buf.append(a.getNom());
 			buf.append('\n');
 		}
-		return buf.toString();
+		//return buf.toString();
+		return nantes;
 	}
 }
