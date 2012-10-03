@@ -36,7 +36,4 @@ public class FirstServerResource extends ServerResource {
 	   public String toString() {  
 	      return "hello, world";
 	   }
-
-		
-	
 }
