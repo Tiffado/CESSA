@@ -2,7 +2,7 @@ package restlet.intro.model;
 
 import java.util.Collection;
 
-import restlet.intro.util.Factory;
+import util.Factory;
 
 public class Reservation {
 	private Collection<Vol> vols;

@@ -1,4 +1,4 @@
-package restlet.intro.util;
+package util;
 
 import java.util.ArrayList;
 import java.util.Collection;
