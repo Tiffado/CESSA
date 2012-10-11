@@ -6,6 +6,6 @@ import restlet.intro.model.Aeroport;
 
 public interface ItemsResource {
 	@Get
-	public Aeroport list();
+	public String list();
 
 }
