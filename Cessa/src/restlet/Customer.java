@@ -21,5 +21,9 @@ public class Customer {
 		cr.setName("Jack");
 		return cr;
 	}
+	
+	public String toString () {
+		return name;
+	}
 
 }
