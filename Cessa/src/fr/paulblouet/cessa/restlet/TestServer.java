@@ -17,32 +17,18 @@
  * along with aca-cessa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package restlet;
+package fr.paulblouet.cessa.restlet;
 
-import org.restlet.resource.ClientResource;
-import org.restlet.resource.ResourceException;
+import org.restlet.Component;
+import org.restlet.data.Protocol;
 
-public class TestClient {
+public class TestServer {
 
-    /**
-     * @param args
-     * @throws ResourceException
-     */
     public static void main(String[] args) throws Exception {
-
-        ClientResource cr = new ClientResource("http://localhost:8182/customer");
-
-        // Retrieve a representation
-        Customer customer = cr.get(Customer.class);
-        System.out.println(customer);
-
-        // Update the target resource
-        customer.setName("John");
-        cr.put(customer);
-
-        // Retrieve the updated version
-        customer = cr.get(Customer.class);
-        System.out.println(customer);
+        Component component = new Component();
+    	component.getServers().add(Protocol.HTTP, 8182);
+    	component.getDefaultHost().attach("/customer", CustomerSR.class);
+    	component.start();
     }
 
 }

@@ -17,23 +17,32 @@
  * along with aca-cessa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package restlet;
+package fr.paulblouet.cessa.restlet;
 
-import org.restlet.resource.Get;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+public class Customer {
+	private String name;
 
-public class CustomerSR extends ServerResource {
-    private static volatile Customer myCustomer = Customer.createSample();
+	public Customer() {
+		super();
+	}
 
-    @Get
-    public Customer retrieve() {
-        return myCustomer;
-    }
+	public String getName() {
+		return name;
+	}
 
-    @Put
-    public void store(Customer customer) {
-        myCustomer = customer;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public static Customer createSample() {
+		// TODO Auto-generated method stub
+		Customer cr = new Customer();
+		cr.setName("Jack");
+		return cr;
+	}
+	
+	public String toString () {
+		return name;
+	}
 
 }
