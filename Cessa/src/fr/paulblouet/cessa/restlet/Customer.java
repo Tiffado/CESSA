@@ -19,8 +19,11 @@
 
 package fr.paulblouet.cessa.restlet;
 
+import java.util.GregorianCalendar;
+
 public class Customer {
 	private String name;
+	private Address address;
 
 	public Customer() {
 		super();
@@ -37,12 +40,24 @@ public class Customer {
 	public static Customer createSample() {
 		// TODO Auto-generated method stub
 		Customer cr = new Customer();
+		Address address = new Address();
+		address.setCity("Paris");
+		address.setStreet("1 rue Berger");
 		cr.setName("Jack");
+		cr.setAddress(address);
 		return cr;
 	}
 	
 	public String toString () {
 		return name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

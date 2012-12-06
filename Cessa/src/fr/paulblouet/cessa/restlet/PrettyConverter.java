@@ -174,6 +174,7 @@ public class PrettyConverter extends ConverterHelper {
 			if ((method.getName().length() > 3) 
 					&& method.getName().startsWith("get")
 					&& (method.getParameterTypes().length == 0)) {
+				method.setAccessible(true);
 
 				// Get return type and field name
 				Class<?> fieldType = method.getReturnType();
@@ -182,7 +183,7 @@ public class PrettyConverter extends ConverterHelper {
 
 				// Print them
 				buffer.append(prefix).append(fieldType.getName()).append(' ');
-				buffer.append(prefix).append(fieldName);
+				buffer.append(fieldName);
 
 				// Exceptions are chained as RuntimeExceptions 
 				try {
@@ -190,21 +191,28 @@ public class PrettyConverter extends ConverterHelper {
 						// Print primitive type
 						buffer.append(" = ").append(method.invoke(source));
 					}
-					else if (fieldType.isInstance(String.class)) {
+					else if (fieldType.equals(String.class)) {
 						// Print escaped strings inside quotes
 						String value = (String) method.invoke(source);
 						value = value.replace("\"", "\\\"");
 						buffer.append(" = \"").append(value).append('"');
 					}
 					else {
-						// Try to recursively print other types 
-						buffer.append(":\n");
-						write(buffer, method.invoke(source), prefix + "  ");
+						// Try to recursively print other types
+						Object value = method.invoke(source);
+						if (value == null) {
+							buffer.append(" = null");
+						}
+						else {
+							buffer.append(":\n");
+							write(buffer, value, prefix + "  ");
+						}
 					}
 				} catch (IllegalAccessException | IllegalArgumentException
 						| InvocationTargetException e) {
 					throw new RuntimeException(e);
 				}
+				buffer.append('\n');
 			}
 		}
 	}
