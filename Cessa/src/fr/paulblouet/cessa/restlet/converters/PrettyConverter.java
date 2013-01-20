@@ -17,7 +17,7 @@
  * along with aca-cessa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.paulblouet.cessa.restlet;
+package fr.paulblouet.cessa.restlet.converters;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

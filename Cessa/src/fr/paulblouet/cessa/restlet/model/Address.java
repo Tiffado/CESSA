@@ -1,4 +1,4 @@
-package fr.paulblouet.cessa.restlet;
+package fr.paulblouet.cessa.restlet.model;
 
 public class Address {
 	private String city;

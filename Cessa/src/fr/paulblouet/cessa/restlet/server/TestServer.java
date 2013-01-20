@@ -17,23 +17,23 @@
  * along with aca-cessa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.paulblouet.cessa.restlet;
+package fr.paulblouet.cessa.restlet.server;
 
-import org.restlet.resource.Get;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+import org.restlet.Component;
+import org.restlet.data.Protocol;
 
-public class CustomerSR extends ServerResource {
-    private static volatile Customer myCustomer = Customer.createSample();
 
-    @Get
-    public Customer retrieve() {
-        return myCustomer;
-    }
+public class TestServer {
 
-    @Put
-    public void store(Customer customer) {
-        myCustomer = customer;
+    public static void main(String[] args) throws Exception {
+        Component component = new Component();
+    	component.getServers().add(Protocol.HTTP, 8182);
+    	component.getDefaultHost().attach("/customer", CustomerResource.class);
+    	component.getDefaultHost().attach("/A", ClassAResource.class);
+    	component.getDefaultHost().attach("/Beq", ClassBEqResource.class);
+    	component.getDefaultHost().attach("/Bneq", ClassBNEqResource.class);
+    	component.getDefaultHost().attach("/Bint", ClassBIntResource.class);
+    	component.start();
     }
 
 }

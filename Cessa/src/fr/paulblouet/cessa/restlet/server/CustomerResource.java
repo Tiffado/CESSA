@@ -17,47 +17,25 @@
  * along with aca-cessa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.paulblouet.cessa.restlet;
+package fr.paulblouet.cessa.restlet.server;
 
-import java.util.GregorianCalendar;
+import org.restlet.resource.Get;
+import org.restlet.resource.Put;
+import org.restlet.resource.ServerResource;
 
-public class Customer {
-	private String name;
-	private Address address;
+import fr.paulblouet.cessa.restlet.model.Customer;
 
-	public Customer() {
-		super();
-	}
+public class CustomerResource extends ServerResource {
+    private static volatile Customer myCustomer = Customer.createSample();
 
-	public String getName() {
-		return name;
-	}
+    @Get
+    public Customer retrieve() {
+        return myCustomer;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public static Customer createSample() {
-		// TODO Auto-generated method stub
-		Customer cr = new Customer();
-		Address address = new Address();
-		address.setCity("Paris");
-		address.setStreet("1 rue Berger");
-		cr.setName("Jack");
-		cr.setAddress(address);
-		return cr;
-	}
-	
-	public String toString () {
-		return name;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    @Put
+    public void store(Customer customer) {
+        myCustomer = customer;
+    }
 
 }

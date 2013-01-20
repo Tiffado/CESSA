@@ -17,32 +17,44 @@
  * along with aca-cessa.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.paulblouet.cessa.restlet;
+package fr.paulblouet.cessa.restlet.model;
 
-import org.restlet.resource.ClientResource;
-import org.restlet.resource.ResourceException;
+public class Customer {
+	private String name;
+	private Address address;
 
-public class TestClient {
+	public Customer() {
+		super();
+	}
 
-    /**
-     * @param args
-     * @throws ResourceException
-     */
-    public static void main(String[] args) throws Exception {
+	public String getName() {
+		return name;
+	}
 
-        ClientResource cr = new ClientResource("http://localhost:8182/customer");
+	public void setName(String name) {
+		this.name = name;
+	}
 
-        // Retrieve a representation
-        Customer customer = cr.get(Customer.class);
-        System.out.println(customer);
+	public static Customer createSample() {
+		Customer cr = new Customer();
+		Address address = new Address();
+		address.setCity("Paris");
+		address.setStreet("1 rue Berger");
+		cr.setName("Jack");
+		cr.setAddress(address);
+		return cr;
+	}
+	
+	public String toString () {
+		return name;
+	}
 
-        // Update the target resource
-        customer.setName("John");
-        cr.put(customer);
+	public Address getAddress() {
+		return address;
+	}
 
-        // Retrieve the updated version
-        customer = cr.get(Customer.class);
-        System.out.println(customer);
-    }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 }
